@@ -1,20 +1,44 @@
-//N개의 최소공배수
-//유클리드 호제법 이용
 package git.AlgorithmStudy.Programmers;
 
+// 스킬 트리
+// 선행 스킬 순서 skill
+// 유저들이 만든 스킬트리
+// 유저들이 만든 스킬 트리에서 가능한 스킬 트리 갯수 반환
 public class Level2_08 {
 
 	public static void main(String[] args) {
 		
-		Level2_08 l2 = new Level2_08();
-		int[] arr = {2,6,8,14};
+		String skill = "CBD";
+		String[] skill_trees = {"BACDE", "CBADF", "AECB", "BDA"};
 		
-		l2.solution(arr);
+		System.out.println(solution(skill, skill_trees));
+		
 	}
 	
-	public int solution(int[] arr) {
-	    int answer = 0;
-
-	    return answer;
-	}
+	public static int solution(String skill, String[] skill_trees) {
+        int answer = 0;
+        for(int i=0; i<skill_trees.length; i++)
+        {
+        	Boolean flag = true;
+            String skill_tree =skill_trees[i];
+        	int skill_idx = 0;
+        	for(int j=0; j<skill_tree.length(); j++)
+        	{
+        		for(int k=skill_idx; k<skill.length(); k++)
+        		{
+        			if(skill.charAt(k)==skill_tree.charAt(j))
+        			{
+        				if(k!=skill_idx)
+        					flag = false;
+        				else
+        					skill_idx++;
+        			}
+        		}
+        	}
+        	if(flag)
+        		answer++;
+        }
+        
+        return answer;
+    }
 }
